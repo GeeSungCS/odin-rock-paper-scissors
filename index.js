@@ -66,7 +66,6 @@ function playGame() {
 
     humanWinner = 0;
 
-    // TODO find a way to change the for loop to a while loop
     while (computerWinner != 3 || humanWinner != 3) {
         if (humanWinner == 3) {
             console.log(
@@ -92,6 +91,4 @@ function playGame() {
 
 playGame();
 
-// 1 == Computer won
-// 2 == Human won
 // 0 == No one won
