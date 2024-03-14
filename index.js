@@ -29,27 +29,28 @@ function playRound(playerSelection, computerSelection) {
         return '0';
     } else if (playerSelection === 'rock' && computerSelection === 'paper') {
         console.log('You lose! Paper beats rock.');
-        return '1';
+        return 'computer';
     } else if (playerSelection === 'scissors' && computerSelection === 'rock') {
         console.log('You lose! Rock beats scissors.');
-        return '1';
+        return 'computer';
     } else if (
         playerSelection === 'paper' &&
         computerSelection === 'scissors'
     ) {
         console.log('You lose! Scissors beat paper.');
-        return '1';
+        return 'computer';
     } else if (playerSelection === 'rock' && computerSelection === 'scissors') {
         console.log('You win! Rock beats scissors.');
-        return '2';
+        return 'human';
     } else if (
         playerSelection === 'scissors' &&
         computerSelection === 'paper'
     ) {
         console.log('You win! Scissors beat paper.');
-        return '2';
+        return 'human';
     } else if (playerSelection === 'paper' && computerSelection === 'rock') {
-        return console.log('You win! Paper beats rock.');
+        console.log('You win! Paper beats rock.');
+        return 'human';
     } else {
         console.log(
             'Error. Please type in rock, paper, or scissors. Try again.'
@@ -65,21 +66,26 @@ function playGame() {
 
     humanWinner = 0;
 
-    for (let i = 0; i < 5; i++) {
-        if (humanWinner === 3) {
+    // TODO find a way to change the for loop to a while loop
+    while (computerWinner != 3 || humanWinner != 3) {
+        if (humanWinner == 3) {
             console.log(
                 `Human has won with a score of ${humanWinner}! Against computer with a score of ${computerWinner}.`
             );
             break;
-        } else if (computerWinner === 3) {
-            console.log(`Computer has won`);
+        } else if (computerWinner == 3) {
+            console.log(
+                `Computer has won with a score of ${computerWinner}! Against you with a score of ${humanWinner}.`
+            );
             break;
         }
-        playRound();
-        if (playRound() === '1') {
-            return computerWinner++;
-        } else if (playRound() === '2') {
-            return humanWinner++;
+
+        results = playRound();
+
+        if (results === 'computer') {
+            computerWinner++;
+        } else if (results === 'human') {
+            humanWinner++;
         }
     }
 }
